@@ -29,7 +29,12 @@ Overall: **R$ 13.49M revenue · 98,207 orders · 94,990 customers · AOV R$ 137 
 | **Delivery & Reviews** | |
 | ![](docs/screenshots/powerbi_5_delivery_reviews.png) | |
 
-<!--APP_SCREENSHOTS-->
+### Streamlit web app (13 tabs: Upload & Analyze, Executive, RFM, Cohorts & CLV, Churn, Forecast, Products, Sellers, Reviews, Geography, What-if, AI Chatbot, AI Analyst)
+![Streamlit app – Upload & Analyze](docs/screenshots/app_1_upload_analyze.png)
+
+| Executive tab (KPIs + anomaly alerts) |
+|---|
+| ![](docs/screenshots/app_2_executive.png) |
 
 ## ✨ Features
 | Area | What it answers | Code |
