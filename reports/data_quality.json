@@ -1,0 +1,63 @@
+{
+  "customers": {
+    "rows": 99441,
+    "duplicates": 0,
+    "nulls": {}
+  },
+  "orders": {
+    "rows": 99441,
+    "duplicates": 0,
+    "nulls": {
+      "order_approved_at": 160,
+      "order_delivered_carrier_date": 1783,
+      "order_delivered_customer_date": 2965
+    }
+  },
+  "order_items": {
+    "rows": 112650,
+    "duplicates": 0,
+    "nulls": {}
+  },
+  "payments": {
+    "rows": 103886,
+    "duplicates": 0,
+    "nulls": {}
+  },
+  "reviews": {
+    "rows": 99224,
+    "duplicates": 0,
+    "nulls": {
+      "review_comment_title": 87656,
+      "review_comment_message": 58247
+    }
+  },
+  "products": {
+    "rows": 32951,
+    "duplicates": 0,
+    "nulls": {
+      "product_category_name": 610,
+      "product_name_lenght": 610,
+      "product_description_lenght": 610,
+      "product_photos_qty": 610,
+      "product_weight_g": 2,
+      "product_length_cm": 2,
+      "product_height_cm": 2,
+      "product_width_cm": 2
+    }
+  },
+  "sellers": {
+    "rows": 3095,
+    "duplicates": 0,
+    "nulls": {}
+  },
+  "geolocation": {
+    "rows": 1000163,
+    "duplicates": 261831,
+    "nulls": {}
+  },
+  "category_translation": {
+    "rows": 71,
+    "duplicates": 0,
+    "nulls": {}
+  }
+}

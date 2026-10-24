@@ -1,0 +1,74 @@
+table dim_date
+	lineageTag: c2f172d3-1f9b-49bd-8a88-0d85052a9a3f
+	dataCategory: Time
+
+	column date
+		dataType: dateTime
+		isKey
+		formatString: dd-mmm-yyyy
+		lineageTag: e0ef009e-58fb-457a-8e4f-6bd1a463ff84
+		summarizeBy: none
+		sourceColumn: date
+
+	column date_key
+		dataType: int64
+		lineageTag: 4b73d994-2c4d-4f77-9cba-d0bdebcd5293
+		summarizeBy: none
+		sourceColumn: date_key
+
+	column year
+		dataType: int64
+		lineageTag: aad215bc-cd7a-4783-85d6-581e5e175f89
+		summarizeBy: none
+		sourceColumn: year
+
+	column quarter
+		dataType: int64
+		lineageTag: 8f8dffed-8678-478b-b304-6fb33f24dd11
+		summarizeBy: none
+		sourceColumn: quarter
+
+	column month
+		dataType: int64
+		lineageTag: af0a6742-8634-42b6-af35-66629cbc48b5
+		summarizeBy: none
+		sourceColumn: month
+
+	column month_name
+		dataType: string
+		lineageTag: 4d50327b-3790-47c2-ac90-2cd9b20c7035
+		summarizeBy: none
+		sourceColumn: month_name
+		sortByColumn: month
+
+	column year_month
+		dataType: string
+		lineageTag: afdd2c4e-f15e-48cb-a1c0-a48434e5a38d
+		summarizeBy: none
+		sourceColumn: year_month
+
+	column day_name
+		dataType: string
+		lineageTag: fe97d4ac-7a5f-4faf-ac6d-4996e89025bf
+		summarizeBy: none
+		sourceColumn: day_name
+		sortByColumn: day_num
+
+	column day_num
+		dataType: int64
+		lineageTag: 55f3521a-3e20-4541-8c7d-03298a27a17d
+		summarizeBy: none
+		sourceColumn: day_num
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_date.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"date", "date_key", "year", "quarter", "month", "month_name", "year_month", "day_name"}),
+				    Typed = Table.TransformColumnTypes(Kept, {{"date", type date}, {"date_key", Int64.Type}, {"year", Int64.Type}, {"quarter", Int64.Type}, {"month", Int64.Type}, {"month_name", type text}, {"year_month", type text}, {"day_name", type text}}, "en-US"),
+				    #"Day Num" = Table.AddColumn(Typed, "day_num", each Date.DayOfWeek([date], Day.Monday) + 1, Int64.Type)
+				in
+				    #"Day Num"
+

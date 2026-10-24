@@ -1,0 +1,238 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1187.8258187318972,
+            "y": 402.82010591559435
+          },
+          "nodeIndex": "agg_category",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1471.8258187318972,
+            "y": 452.82010591559435
+          },
+          "nodeIndex": "agg_cohort_retention",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1755.8258187318972,
+            "y": 476.82010591559435
+          },
+          "nodeIndex": "agg_complaint_themes",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2039.8258187318972,
+            "y": 452.82010591559435
+          },
+          "nodeIndex": "agg_revenue_anomalies",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2323.825818731897,
+            "y": 402.82010591559435
+          },
+          "nodeIndex": "agg_seller_scorecard",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2607.825818731897,
+            "y": 428.82010591559435
+          },
+          "nodeIndex": "agg_sentiment_month",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2891.825818731897,
+            "y": 440.82010591559435
+          },
+          "nodeIndex": "agg_state",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3175.825818731897,
+            "y": 476.82010591559435
+          },
+          "nodeIndex": "churn_feature_importance",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 843.09944047291833,
+            "y": 97.778503216839
+          },
+          "nodeIndex": "customer_clv",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 953.82581873189736,
+            "y": 332.69765150872416
+          },
+          "nodeIndex": "customer_rfm",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 665.58696599099824,
+            "y": 512.80081177859711
+          },
+          "nodeIndex": "dim_customer",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 213.62334234958621,
+            "y": 164.50290724532329
+          },
+          "nodeIndex": "dim_date",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 342.86956300367046,
+            "y": 927.64021183118882
+          },
+          "nodeIndex": "dim_product",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 808.40689757977464
+          },
+          "nodeIndex": "dim_seller",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 342.82790289927937,
+            "y": 521.21468662525376
+          },
+          "nodeIndex": "fact_order_items",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 505.94815924964411,
+            "y": 160.31292847408849
+          },
+          "nodeIndex": "fact_orders",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3459.825818731897,
+            "y": 402.82010591559435
+          },
+          "nodeIndex": "forecast_chart",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 534.98522068224418,
+            "y": -50
+          },
+          "nodeIndex": "review_sentiment",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

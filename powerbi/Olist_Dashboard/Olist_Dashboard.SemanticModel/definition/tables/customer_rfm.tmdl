@@ -1,0 +1,62 @@
+table customer_rfm
+	lineageTag: 3abd88e7-ae54-4dc6-95d6-60a956a09cb2
+
+	measure 'RFM Customers' = COUNTROWS ( customer_rfm )
+		formatString: #,0
+		lineageTag: 16bfd1bb-bc9d-4747-90ee-f7e5e3a6ede1
+
+	measure 'RFM Revenue' = SUM ( customer_rfm[monetary] )
+		formatString: \R$ #,0
+		lineageTag: cf7331b0-29b8-4ab5-9d6b-d3e96d08fdbc
+
+	measure 'At Risk Customers' = CALCULATE ( COUNTROWS ( customer_rfm ), customer_rfm[segment] = "At Risk" )
+		formatString: #,0
+		lineageTag: 9493df7f-09fc-4a14-a5a4-b6ed30f176f0
+
+	column customer_unique_id
+		dataType: string
+		lineageTag: 0820fd68-4c6f-44af-82c7-1f93203a7081
+		summarizeBy: none
+		sourceColumn: customer_unique_id
+
+	column frequency
+		dataType: int64
+		lineageTag: 0583c745-4c66-48f3-8856-905b289a04f5
+		summarizeBy: none
+		sourceColumn: frequency
+
+	column monetary
+		dataType: double
+		lineageTag: 06450cfa-c6e2-4443-9b9d-129c4ddcec60
+		summarizeBy: none
+		sourceColumn: monetary
+
+	column recency_days
+		dataType: int64
+		lineageTag: b8394c4d-fc9a-452d-afec-a62494d1f120
+		summarizeBy: none
+		sourceColumn: recency_days
+
+	column segment
+		dataType: string
+		lineageTag: 53b1a2b7-2685-4be1-a1e3-cde7b7517454
+		summarizeBy: none
+		sourceColumn: segment
+
+	column recommended_action
+		dataType: string
+		lineageTag: fbab42f6-8124-4d6a-83d2-696fdd281581
+		summarizeBy: none
+		sourceColumn: recommended_action
+
+	partition customer_rfm = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "customer_rfm.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"customer_unique_id", "frequency", "monetary", "recency_days", "segment", "recommended_action"}),
+				    Typed = Table.TransformColumnTypes(Kept, {{"customer_unique_id", type text}, {"frequency", Int64.Type}, {"monetary", type number}, {"recency_days", Int64.Type}, {"segment", type text}, {"recommended_action", type text}}, "en-US")
+				in
+				    Typed
+

@@ -1,0 +1,171 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "p3v06",
+  "position": {
+    "x": 230,
+    "y": 222,
+    "z": 1000,
+    "height": 247,
+    "width": 1030,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "forecast_chart"
+                    }
+                  },
+                  "Property": "week"
+                }
+              },
+              "queryRef": "forecast_chart.week",
+              "nativeQueryRef": "week",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "forecast_chart"
+                    }
+                  },
+                  "Property": "Actual Revenue"
+                }
+              },
+              "queryRef": "forecast_chart.Actual Revenue",
+              "nativeQueryRef": "Actual Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "forecast_chart"
+                    }
+                  },
+                  "Property": "Forecast Revenue"
+                }
+              },
+              "queryRef": "forecast_chart.Forecast Revenue",
+              "nativeQueryRef": "Forecast Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "forecast_chart"
+                    }
+                  },
+                  "Property": "Forecast Lower"
+                }
+              },
+              "queryRef": "forecast_chart.Forecast Lower",
+              "nativeQueryRef": "Forecast Lower"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "forecast_chart"
+                    }
+                  },
+                  "Property": "Forecast Upper"
+                }
+              },
+              "queryRef": "forecast_chart.Forecast Upper",
+              "nativeQueryRef": "Forecast Upper"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "forecast_chart"
+                  }
+                },
+                "Property": "week"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "p4v08",
+  "position": {
+    "x": 230,
+    "y": 486,
+    "z": 1000,
+    "width": 569,
+    "height": 214,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "agg_seller_scorecard"
+                    }
+                  },
+                  "Property": "seller_id"
+                }
+              },
+              "queryRef": "agg_seller_scorecard.seller_id",
+              "nativeQueryRef": "seller_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "agg_seller_scorecard"
+                    }
+                  },
+                  "Property": "state"
+                }
+              },
+              "queryRef": "agg_seller_scorecard.state",
+              "nativeQueryRef": "state"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "agg_seller_scorecard"
+                    }
+                  },
+                  "Property": "tier"
+                }
+              },
+              "queryRef": "agg_seller_scorecard.tier",
+              "nativeQueryRef": "tier"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "agg_seller_scorecard"
+                    }
+                  },
+                  "Property": "score"
+                }
+              },
+              "queryRef": "agg_seller_scorecard.score",
+              "nativeQueryRef": "score"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "agg_seller_scorecard"
+                    }
+                  },
+                  "Property": "revenue"
+                }
+              },
+              "queryRef": "agg_seller_scorecard.revenue",
+              "nativeQueryRef": "revenue"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "agg_seller_scorecard"
+                    }
+                  },
+                  "Property": "avg_review"
+                }
+              },
+              "queryRef": "agg_seller_scorecard.avg_review",
+              "nativeQueryRef": "avg_review"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "agg_seller_scorecard"
+                    }
+                  },
+                  "Property": "late_pct"
+                }
+              },
+              "queryRef": "agg_seller_scorecard.late_pct",
+              "nativeQueryRef": "late_pct"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "agg_seller_scorecard"
+                  }
+                },
+                "Property": "score"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

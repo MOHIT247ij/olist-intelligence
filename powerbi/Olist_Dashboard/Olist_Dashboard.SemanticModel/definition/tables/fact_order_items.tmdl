@@ -1,0 +1,76 @@
+table fact_order_items
+	lineageTag: 2f03e22c-0dd8-46a2-9888-826b95c95dda
+
+	measure 'Item Revenue' = CALCULATE ( SUM ( fact_order_items[price] ), NOT fact_order_items[order_status] IN {"canceled", "unavailable"} )
+		formatString: \R$ #,0.00,,\M
+		lineageTag: bfc748aa-55ac-41e5-bff6-6831a53d0e8a
+
+	measure 'Top10 Category Revenue' = IF ( RANKX ( ALL ( dim_product[category] ), [Item Revenue],, DESC ) <= 10, [Item Revenue] )
+		formatString: \R$ #,0.00,,\M
+		lineageTag: fbfe8d99-4916-4d6b-acd3-759135af24b8
+
+	column order_id
+		dataType: string
+		lineageTag: 8a902b74-ce1d-4263-ada0-9be247118688
+		summarizeBy: none
+		sourceColumn: order_id
+
+	column order_item_id
+		dataType: int64
+		lineageTag: 850b34cc-e6e8-4c76-b525-83ac61ef7d5a
+		summarizeBy: none
+		sourceColumn: order_item_id
+
+	column product_id
+		dataType: string
+		lineageTag: 8a9a914f-3ce3-4f35-8bc4-92e53728c11c
+		summarizeBy: none
+		sourceColumn: product_id
+
+	column seller_id
+		dataType: string
+		lineageTag: c69de112-c805-4f2f-8572-a7e12625e528
+		summarizeBy: none
+		sourceColumn: seller_id
+
+	column price
+		dataType: double
+		lineageTag: c6786238-c372-44f3-be0a-634bc2e22c2e
+		summarizeBy: none
+		sourceColumn: price
+
+	column freight_value
+		dataType: double
+		lineageTag: dd15905d-31da-4c26-8ae0-8ab89786cbbd
+		summarizeBy: none
+		sourceColumn: freight_value
+
+	column category
+		dataType: string
+		lineageTag: 3ead54e0-ad4f-4691-a702-617523614130
+		summarizeBy: none
+		sourceColumn: category
+
+	column est_gross_profit
+		dataType: double
+		lineageTag: b7368068-95a7-4a09-a6fe-db575efceefb
+		summarizeBy: none
+		sourceColumn: est_gross_profit
+
+	column order_status
+		dataType: string
+		lineageTag: 53d93d38-e0ab-4b9a-802a-dac9d5a45678
+		summarizeBy: none
+		sourceColumn: order_status
+
+	partition fact_order_items = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "fact_order_items.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"order_id", "order_item_id", "product_id", "seller_id", "price", "freight_value", "category", "est_gross_profit", "order_status"}),
+				    Typed = Table.TransformColumnTypes(Kept, {{"order_id", type text}, {"order_item_id", Int64.Type}, {"product_id", type text}, {"seller_id", type text}, {"price", type number}, {"freight_value", type number}, {"category", type text}, {"est_gross_profit", type number}, {"order_status", type text}}, "en-US")
+				in
+				    Typed
+

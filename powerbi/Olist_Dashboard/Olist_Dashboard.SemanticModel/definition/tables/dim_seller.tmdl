@@ -1,0 +1,26 @@
+table dim_seller
+	lineageTag: 8cc4b076-a6cf-411e-aa9d-d382e0e50434
+
+	column seller_id
+		dataType: string
+		lineageTag: 701c77f8-8329-4891-a8a1-e1edd15c0e11
+		summarizeBy: none
+		sourceColumn: seller_id
+
+	column state
+		dataType: string
+		lineageTag: 06ee324f-0546-465c-8b04-f3e25bb62959
+		summarizeBy: none
+		sourceColumn: state
+
+	partition dim_seller = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_seller.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"seller_id", "state"}),
+				    Typed = Table.TransformColumnTypes(Kept, {{"seller_id", type text}, {"state", type text}}, "en-US")
+				in
+				    Typed
+

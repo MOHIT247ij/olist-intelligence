@@ -1,0 +1,30 @@
+table review_sentiment
+	lineageTag: 88814dd0-5d43-4877-ad73-2031c183e992
+
+	measure 'Positive Sentiment %' = DIVIDE ( CALCULATE ( COUNTROWS ( review_sentiment ), review_sentiment[sentiment] = "positive" ), COUNTROWS ( review_sentiment ) )
+		formatString: 0.0%
+		lineageTag: c8c0831b-a6dc-4b18-9d95-6690312fd591
+
+	column order_id
+		dataType: string
+		lineageTag: 519fa30a-8693-4416-9b84-293af9f50772
+		summarizeBy: none
+		sourceColumn: order_id
+
+	column sentiment
+		dataType: string
+		lineageTag: 06c11e67-6493-48a7-9a37-c1308728cff7
+		summarizeBy: none
+		sourceColumn: sentiment
+
+	partition review_sentiment = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "review_sentiment.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"order_id", "sentiment"}),
+				    Typed = Table.TransformColumnTypes(Kept, {{"order_id", type text}, {"sentiment", type text}}, "en-US")
+				in
+				    Typed
+

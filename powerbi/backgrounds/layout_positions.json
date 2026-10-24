@@ -1,0 +1,354 @@
+{
+ "01_executive.png": {
+  "kpis": [
+   {
+    "name": "Revenue",
+    "x": 224,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "Est. Profit",
+    "x": 435,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "Orders",
+    "x": 646,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "Avg Order Value",
+    "x": 858,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "Avg Review",
+    "x": 1069,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   }
+  ],
+  "visuals": [
+   {
+    "name": "Monthly revenue & 3-month average",
+    "x": 224,
+    "y": 222,
+    "w": 647,
+    "h": 232
+   },
+   {
+    "name": "Revenue by payment type",
+    "x": 885,
+    "y": 222,
+    "w": 381,
+    "h": 232
+   },
+   {
+    "name": "Top 10 categories",
+    "x": 224,
+    "y": 498,
+    "w": 338,
+    "h": 208
+   },
+   {
+    "name": "Revenue by state",
+    "x": 576,
+    "y": 498,
+    "w": 338,
+    "h": 208
+   },
+   {
+    "name": "Late delivery vs review",
+    "x": 928,
+    "y": 498,
+    "w": 338,
+    "h": 208
+   }
+  ]
+ },
+ "02_customers.png": {
+  "kpis": [
+   {
+    "name": "Customers",
+    "x": 224,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "Repeat Rate %",
+    "x": 435,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "At-Risk Customers",
+    "x": 646,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "Avg CLV",
+    "x": 858,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "Month-1 Retention",
+    "x": 1069,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   }
+  ],
+  "visuals": [
+   {
+    "name": "RFM segments (treemap)",
+    "x": 224,
+    "y": 222,
+    "w": 561,
+    "h": 232
+   },
+   {
+    "name": "Segment table & actions",
+    "x": 799,
+    "y": 222,
+    "w": 467,
+    "h": 232
+   },
+   {
+    "name": "Cohort retention matrix",
+    "x": 224,
+    "y": 498,
+    "w": 633,
+    "h": 208
+   },
+   {
+    "name": "Churn drivers",
+    "x": 871,
+    "y": 498,
+    "w": 395,
+    "h": 208
+   }
+  ]
+ },
+ "03_sales_forecast.png": {
+  "kpis": [
+   {
+    "name": "Revenue YTD",
+    "x": 224,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "MoM Growth %",
+    "x": 435,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "YoY Growth %",
+    "x": 646,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "Next 12 Weeks (Forecast)",
+    "x": 858,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "Forecast Error (MAPE)",
+    "x": 1069,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   }
+  ],
+  "visuals": [
+   {
+    "name": "Weekly revenue: actual vs forecast",
+    "x": 224,
+    "y": 222,
+    "w": 1042,
+    "h": 253
+   },
+   {
+    "name": "Revenue by weekday",
+    "x": 224,
+    "y": 519,
+    "w": 338,
+    "h": 187
+   },
+   {
+    "name": "Revenue by month (YoY)",
+    "x": 576,
+    "y": 519,
+    "w": 338,
+    "h": 187
+   },
+   {
+    "name": "Anomaly alerts",
+    "x": 928,
+    "y": 519,
+    "w": 338,
+    "h": 187
+   }
+  ]
+ },
+ "04_products_sellers.png": {
+  "kpis": [
+   {
+    "name": "Categories",
+    "x": 224,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "Top Category Share",
+    "x": 435,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "Sellers",
+    "x": 646,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "Top Sellers",
+    "x": 858,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "Avg Seller Score",
+    "x": 1069,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   }
+  ],
+  "visuals": [
+   {
+    "name": "Pareto: category revenue & cumulative %",
+    "x": 224,
+    "y": 222,
+    "w": 600,
+    "h": 220
+   },
+   {
+    "name": "Price vs review (bubble)",
+    "x": 838,
+    "y": 222,
+    "w": 428,
+    "h": 220
+   },
+   {
+    "name": "Seller scorecard",
+    "x": 224,
+    "y": 486,
+    "w": 581,
+    "h": 220
+   },
+   {
+    "name": "Seller tiers",
+    "x": 819,
+    "y": 486,
+    "w": 447,
+    "h": 220
+   }
+  ]
+ },
+ "05_delivery_reviews.png": {
+  "kpis": [
+   {
+    "name": "Avg Delivery Days",
+    "x": 224,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "Late Deliveries %",
+    "x": 435,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "Avg Review",
+    "x": 646,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "Negative Reviews %",
+    "x": 858,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   },
+   {
+    "name": "Positive Sentiment %",
+    "x": 1069,
+    "y": 86,
+    "w": 197,
+    "h": 92
+   }
+  ],
+  "visuals": [
+   {
+    "name": "Delivery delay vs review",
+    "x": 224,
+    "y": 222,
+    "w": 467,
+    "h": 220
+   },
+   {
+    "name": "Avg delivery days by state (map)",
+    "x": 705,
+    "y": 222,
+    "w": 561,
+    "h": 220
+   },
+   {
+    "name": "Complaint themes",
+    "x": 224,
+    "y": 486,
+    "w": 514,
+    "h": 220
+   },
+   {
+    "name": "Sentiment trend by month",
+    "x": 752,
+    "y": 486,
+    "w": 514,
+    "h": 220
+   }
+  ]
+ }
+}

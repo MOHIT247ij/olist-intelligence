@@ -1,0 +1,152 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "p3v09",
+  "position": {
+    "x": 934,
+    "y": 519,
+    "z": 1000,
+    "width": 326,
+    "height": 181,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "agg_revenue_anomalies"
+                    }
+                  },
+                  "Property": "week"
+                }
+              },
+              "queryRef": "agg_revenue_anomalies.week",
+              "nativeQueryRef": "week"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "agg_revenue_anomalies"
+                    }
+                  },
+                  "Property": "alert"
+                }
+              },
+              "queryRef": "agg_revenue_anomalies.alert",
+              "nativeQueryRef": "alert"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "agg_revenue_anomalies"
+                    }
+                  },
+                  "Property": "revenue"
+                }
+              },
+              "queryRef": "agg_revenue_anomalies.revenue",
+              "nativeQueryRef": "revenue"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "agg_revenue_anomalies"
+                    }
+                  },
+                  "Property": "change_pct"
+                }
+              },
+              "queryRef": "agg_revenue_anomalies.change_pct",
+              "nativeQueryRef": "change_pct"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "agg_revenue_anomalies"
+                  }
+                },
+                "Property": "week"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

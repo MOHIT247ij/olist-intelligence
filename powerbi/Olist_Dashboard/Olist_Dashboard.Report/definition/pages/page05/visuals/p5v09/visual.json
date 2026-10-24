@@ -1,0 +1,157 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "p5v09",
+  "position": {
+    "x": 758,
+    "y": 486,
+    "z": 1000,
+    "height": 214,
+    "width": 502,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "agg_sentiment_month"
+                    }
+                  },
+                  "Property": "review_month"
+                }
+              },
+              "queryRef": "agg_sentiment_month.review_month",
+              "nativeQueryRef": "review_month",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "agg_sentiment_month"
+                    }
+                  },
+                  "Property": "Positive %"
+                }
+              },
+              "queryRef": "agg_sentiment_month.Positive %",
+              "nativeQueryRef": "Positive %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "agg_sentiment_month"
+                    }
+                  },
+                  "Property": "Neutral %"
+                }
+              },
+              "queryRef": "agg_sentiment_month.Neutral %",
+              "nativeQueryRef": "Neutral %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "agg_sentiment_month"
+                    }
+                  },
+                  "Property": "Negative %"
+                }
+              },
+              "queryRef": "agg_sentiment_month.Negative %",
+              "nativeQueryRef": "Negative %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "agg_sentiment_month"
+                  }
+                },
+                "Property": "review_month"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

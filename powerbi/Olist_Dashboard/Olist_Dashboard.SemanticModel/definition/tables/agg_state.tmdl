@@ -1,0 +1,48 @@
+table agg_state
+	lineageTag: 29ddb5f3-dcc7-4486-9fd2-886f15471d17
+
+	measure 'State Delivery Days' = AVERAGE ( agg_state[avg_delivery_days] )
+		formatString: 0.0
+		lineageTag: 6d70ee6e-1577-4503-bf83-c8656543a84e
+
+	column state
+		dataType: string
+		lineageTag: 10271e42-1c67-4842-8eb9-f3fafdd1ec8b
+		summarizeBy: none
+		sourceColumn: state
+
+	column revenue
+		dataType: double
+		lineageTag: 01bd9e46-9332-426c-bf4b-c2bea64e7216
+		summarizeBy: none
+		sourceColumn: revenue
+
+	column avg_delivery_days
+		dataType: double
+		lineageTag: 08b9e067-368d-4987-9ac2-9b303b7e4f1d
+		summarizeBy: none
+		sourceColumn: avg_delivery_days
+
+	column late_pct
+		dataType: double
+		lineageTag: 5d144cc8-5f7e-4108-8d4f-cba3d30c0003
+		summarizeBy: none
+		sourceColumn: late_pct
+
+	column avg_review
+		dataType: double
+		lineageTag: 4032d4b8-6c51-49ea-9308-5423844ab956
+		summarizeBy: none
+		sourceColumn: avg_review
+
+	partition agg_state = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "agg_state.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"state", "revenue", "avg_delivery_days", "late_pct", "avg_review"}),
+				    Typed = Table.TransformColumnTypes(Kept, {{"state", type text}, {"revenue", type number}, {"avg_delivery_days", type number}, {"late_pct", type number}, {"avg_review", type number}}, "en-US")
+				in
+				    Typed
+

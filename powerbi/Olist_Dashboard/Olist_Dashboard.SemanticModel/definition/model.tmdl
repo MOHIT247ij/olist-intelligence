@@ -1,0 +1,29 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table fact_orders
+ref table fact_order_items
+ref table dim_customer
+ref table dim_product
+ref table dim_seller
+ref table dim_date
+ref table customer_rfm
+ref table customer_clv
+ref table agg_cohort_retention
+ref table churn_feature_importance
+ref table agg_revenue_anomalies
+ref table agg_category
+ref table agg_seller_scorecard
+ref table review_sentiment
+ref table agg_complaint_themes
+ref table agg_sentiment_month
+ref table agg_state
+ref table forecast_chart
+

@@ -1,0 +1,377 @@
+{
+  "meta": {
+    "dataset": "Olist Brazilian E-Commerce",
+    "currency": "R$"
+  },
+  "kpis": {
+    "revenue": 13494400.74,
+    "gmv": 15735527.03,
+    "est_gross_profit": 4723040.259,
+    "orders": 98207,
+    "customers": 94990,
+    "aov": 137.40772796236521,
+    "repeat_customer_rate_pct": 3.0403200336877565,
+    "cancel_rate_pct": 1.2409368369183738,
+    "avg_review": 4.155908256114867,
+    "late_delivery_pct": 8.112366538820359,
+    "avg_delivery_days": 12.558217098051975,
+    "freight_share_pct": 14.242460933957037
+  },
+  "top_categories": [
+    {
+      "category": "health_beauty",
+      "revenue": 1255695.13,
+      "revenue_share_pct": 9.305304875657635,
+      "avg_review": 4.149706867671692
+    },
+    {
+      "category": "watches_gifts",
+      "revenue": 1198185.21,
+      "revenue_share_pct": 8.87912870742269,
+      "avg_review": 4.027702702702703
+    },
+    {
+      "category": "bed_bath_table",
+      "revenue": 1035964.06,
+      "revenue_share_pct": 7.676991961037613,
+      "avg_review": 3.9013133892739877
+    },
+    {
+      "category": "sports_leisure",
+      "revenue": 979740.92,
+      "revenue_share_pct": 7.26035145151618,
+      "avg_review": 4.122259992966827
+    },
+    {
+      "category": "computers_accessories",
+      "revenue": 904322.02,
+      "revenue_share_pct": 6.701461127646933,
+      "avg_review": 3.947402429568364
+    },
+    {
+      "category": "furniture_decor",
+      "revenue": 727465.05,
+      "revenue_share_pct": 5.390865915547134,
+      "avg_review": 3.91880706025563
+    },
+    {
+      "category": "housewares",
+      "revenue": 626825.8,
+      "revenue_share_pct": 4.645080667731824,
+      "avg_review": 4.071168679959249
+    },
+    {
+      "category": "cool_stuff",
+      "revenue": 620770.49,
+      "revenue_share_pct": 4.600207908157914,
+      "avg_review": 4.158217716115262
+    },
+    {
+      "category": "auto",
+      "revenue": 586585.73,
+      "revenue_share_pct": 4.346882394423393,
+      "avg_review": 4.077385243931747
+    },
+    {
+      "category": "garden_tools",
+      "revenue": 481009.94,
+      "revenue_share_pct": 3.5645150108384884,
+      "avg_review": 4.056098696461825
+    }
+  ],
+  "delivery_vs_review": [
+    {
+      "delivery_bucket": "10+ days early",
+      "orders": 56905,
+      "avg_review": 4.322783586679553,
+      "pct_negative": 8.951761708110007
+    },
+    {
+      "delivery_bucket": "On time",
+      "orders": 31258,
+      "avg_review": 4.241922067950605,
+      "pct_negative": 9.712713545332395
+    },
+    {
+      "delivery_bucket": "1-7 days late",
+      "orders": 4409,
+      "avg_review": 3.1830347017464278,
+      "pct_negative": 36.085280108868226
+    },
+    {
+      "delivery_bucket": "7+ days late",
+      "orders": 3252,
+      "avg_review": 1.7272447724477245,
+      "pct_negative": 78.4440344403444
+    }
+  ],
+  "rfm_segments": [
+    {
+      "segment": "Big Spenders (one-time)",
+      "customers": 10206,
+      "revenue_share_pct": 28.838393936897404,
+      "recommended_action": "Personalised premium recommendations"
+    },
+    {
+      "segment": "Potential Loyalist",
+      "customers": 14406,
+      "revenue_share_pct": 28.23497153009964,
+      "recommended_action": "2nd-purchase coupon within 30 days"
+    },
+    {
+      "segment": "At Risk",
+      "customers": 15005,
+      "revenue_share_pct": 14.23879036141712,
+      "recommended_action": "Win-back campaign with time-bound discount"
+    },
+    {
+      "segment": "New Customers",
+      "customers": 21734,
+      "revenue_share_pct": 10.277496897954704,
+      "recommended_action": "Onboarding journey, cross-sell top categories"
+    },
+    {
+      "segment": "Need Attention",
+      "customers": 14850,
+      "revenue_share_pct": 9.167626356190993,
+      "recommended_action": "Survey + targeted offer"
+    },
+    {
+      "segment": "Hibernating",
+      "customers": 15352,
+      "revenue_share_pct": 5.547430771812508,
+      "recommended_action": "Low-cost reactivation email; suppress if no response"
+    },
+    {
+      "segment": "Champions",
+      "customers": 1203,
+      "revenue_share_pct": 2.517182443305872,
+      "recommended_action": "Reward, early access, referral program"
+    },
+    {
+      "segment": "Loyal",
+      "customers": 602,
+      "revenue_share_pct": 1.1781077023217674,
+      "recommended_action": "Upsell higher-value categories, loyalty points"
+    }
+  ],
+  "churn": {
+    "cutoff": "2018-04-20",
+    "churn_rate": 0.9915014164305949,
+    "best_model": "logistic_regression",
+    "metrics": {
+      "logistic_regression": {
+        "roc_auc": 0.6479873922456008,
+        "pr_auc_return": 0.029905650119577753,
+        "top_decile_lift": 2.9577464788732395
+      },
+      "gradient_boosting": {
+        "roc_auc": 0.5986324282616731,
+        "pr_auc_return": 0.017018621695214477,
+        "top_decile_lift": 2.1830985915492955
+      }
+    },
+    "top_drivers": [
+      {
+        "feature": "monetary",
+        "importance": 0.08168641912011203
+      },
+      {
+        "feature": "state",
+        "importance": 0.07098657096093548
+      },
+      {
+        "feature": "frequency",
+        "importance": 0.05216225276567217
+      },
+      {
+        "feature": "avg_delivery_days",
+        "importance": 0.04846285815700733
+      },
+      {
+        "feature": "avg_delay_days",
+        "importance": 0.03167754530575222
+      },
+      {
+        "feature": "freight_share",
+        "importance": 0.030991303661927393
+      }
+    ]
+  },
+  "forecast": {
+    "next_12w_revenue": 2953411.4421838988,
+    "model_mape_pct": 14.92100324739892,
+    "baseline_mape_pct": 19.85064703768231
+  },
+  "anomalies": [
+    {
+      "week": "2017-11-20 00:00:00",
+      "revenue": 405241.17,
+      "change_pct": 165.96404250230822,
+      "alert": "Spike"
+    },
+    {
+      "week": "2018-02-26 00:00:00",
+      "revenue": 258955.4,
+      "change_pct": 25.243864052228716,
+      "alert": "Spike"
+    },
+    {
+      "week": "2018-05-07 00:00:00",
+      "revenue": 293731.41,
+      "change_pct": 28.539418355141045,
+      "alert": "Spike"
+    },
+    {
+      "week": "2018-05-21 00:00:00",
+      "revenue": 133584.72,
+      "change_pct": -44.701125952386015,
+      "alert": "Drop"
+    },
+    {
+      "week": "2018-07-30 00:00:00",
+      "revenue": 274389.78,
+      "change_pct": 39.607211876538884,
+      "alert": "Spike"
+    }
+  ],
+  "cohort": {
+    "avg_month1_retention_pct": 0.47570343787853314
+  },
+  "market_basket": {
+    "orders": 98199,
+    "multi_item_pct": 9.940019755801995,
+    "multi_category_pct": 0.799397142537093,
+    "top_pairs": [
+      {
+        "category_a": "bed_bath_table",
+        "category_b": "home_confort",
+        "orders_together": 43,
+        "lift": 1.1316271654388443
+      },
+      {
+        "category_a": "construction_tools_lights",
+        "category_b": "furniture_decor",
+        "orders_together": 11,
+        "lift": 0.6918633808906182
+      },
+      {
+        "category_a": "furniture_decor",
+        "category_b": "home_construction",
+        "orders_together": 13,
+        "lift": 0.40632021197870655
+      },
+      {
+        "category_a": "garden_tools",
+        "category_b": "home_construction",
+        "orders_together": 7,
+        "lift": 0.40105896046839307
+      },
+      {
+        "category_a": "art",
+        "category_b": "furniture_decor",
+        "orders_together": 5,
+        "lift": 0.38019629479063827
+      }
+    ]
+  },
+  "clv": {
+    "expected_orders_if_return_12m": 4.0,
+    "tiers": [
+      {
+        "clv_tier": "Bronze",
+        "customers": 23340,
+        "avg_clv": 118.47414535672223,
+        "total_clv": 2765186.552625897,
+        "avg_orders": 1.0067694944301628,
+        "clv_share_pct": 7.121589257910416
+      },
+      {
+        "clv_tier": "Silver",
+        "customers": 23339,
+        "avg_clv": 226.29518767798217,
+        "total_clv": 5281503.385216426,
+        "avg_orders": 1.0196238056472,
+        "clv_share_pct": 13.602227935781311
+      },
+      {
+        "clv_tier": "Gold",
+        "customers": 23339,
+        "avg_clv": 379.9902196709788,
+        "total_clv": 8868591.736900974,
+        "avg_orders": 1.0335489952440122,
+        "clv_share_pct": 22.840581076285808
+      },
+      {
+        "clv_tier": "Platinum",
+        "customers": 23340,
+        "avg_clv": 938.8578083508554,
+        "total_clv": 21912941.246908966,
+        "avg_orders": 1.0737360754070266,
+        "clv_share_pct": 56.435601730022476
+      }
+    ]
+  },
+  "sellers": {
+    "scored_sellers": 1261,
+    "tier_counts": {
+      "Average": 501,
+      "Good": 377,
+      "Needs Improvement": 359,
+      "Top Seller": 24
+    }
+  },
+  "what_if_baseline": {
+    "orders": 96470,
+    "late_pct": 8.112366538820359,
+    "review_late": 2.565069834225297,
+    "review_ontime": 4.294114310992139,
+    "neg_late_pct": 52.92614362381804,
+    "neg_ontime_pct": 9.171517530797345,
+    "repeat_late_pct": 2.729300616716966,
+    "repeat_ontime_pct": 3.024647435523568,
+    "aov": 137.0400013475692,
+    "customers": 93358
+  },
+  "sentiment": {
+    "share_pct": {
+      "positive": 77.5,
+      "negative": 14.0,
+      "neutral": 8.5
+    },
+    "reviews_with_text_pct": 43.050277178154104,
+    "top_complaint_themes": [
+      {
+        "theme": "Delivery delay / not received",
+        "complaints": 5040,
+        "avg_stars": 1.154563492063492,
+        "share_of_negative_comments_pct": 48.90829694323144
+      },
+      {
+        "theme": "Damaged / poor quality",
+        "complaints": 1146,
+        "avg_stars": 1.2207678883071553,
+        "share_of_negative_comments_pct": 11.120815138282387
+      },
+      {
+        "theme": "Customer service / no response",
+        "complaints": 1042,
+        "avg_stars": 1.1103646833013436,
+        "share_of_negative_comments_pct": 10.111596312469675
+      },
+      {
+        "theme": "Missing items",
+        "complaints": 1012,
+        "avg_stars": 1.1897233201581028,
+        "share_of_negative_comments_pct": 9.820475497331392
+      },
+      {
+        "theme": "Refund / cancellation",
+        "complaints": 986,
+        "avg_stars": 1.1095334685598377,
+        "share_of_negative_comments_pct": 9.568170790878215
+      }
+    ]
+  },
+  "unavailable": {}
+}

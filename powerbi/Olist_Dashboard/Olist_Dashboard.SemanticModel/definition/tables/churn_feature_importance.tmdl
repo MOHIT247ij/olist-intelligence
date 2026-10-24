@@ -1,0 +1,30 @@
+table churn_feature_importance
+	lineageTag: a974898b-98a3-4ee7-9ac9-75e5d0c82dc1
+
+	measure 'Churn Driver Importance' = SUM ( churn_feature_importance[importance] )
+		formatString: 0.000
+		lineageTag: a8eab61c-1bde-42f7-a106-367183ef1ea5
+
+	column feature
+		dataType: string
+		lineageTag: 7fc7f442-242e-4175-9eab-c3512b51490b
+		summarizeBy: none
+		sourceColumn: feature
+
+	column importance
+		dataType: double
+		lineageTag: 32ba05a4-f907-42ad-a65d-0a49ea8805dc
+		summarizeBy: none
+		sourceColumn: importance
+
+	partition churn_feature_importance = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "churn_feature_importance.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"feature", "importance"}),
+				    Typed = Table.TransformColumnTypes(Kept, {{"feature", type text}, {"importance", type number}}, "en-US")
+				in
+				    Typed
+

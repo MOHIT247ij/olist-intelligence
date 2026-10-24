@@ -1,0 +1,40 @@
+table agg_cohort_retention
+	lineageTag: 637548de-a6f0-4029-b731-943b9e4c3db8
+
+	measure 'Retention %' = DIVIDE ( AVERAGE ( agg_cohort_retention[retention_pct] ), 100 )
+		formatString: 0.0%
+		lineageTag: ad6b4dbd-e7f2-402a-861b-60a18b496668
+
+	measure 'Month1 Retention %' = DIVIDE ( CALCULATE ( AVERAGE ( agg_cohort_retention[retention_pct] ), agg_cohort_retention[month_number] = 1 ), 100 )
+		formatString: 0.00%
+		lineageTag: 79deab02-61ed-4df7-b9ff-fdc2a57733a7
+
+	column cohort_month
+		dataType: string
+		lineageTag: 434425df-dce1-4590-bcef-6e77d6f6e0fe
+		summarizeBy: none
+		sourceColumn: cohort_month
+
+	column month_number
+		dataType: int64
+		lineageTag: 53a62447-7d8a-4032-b72d-fc101e920429
+		summarizeBy: none
+		sourceColumn: month_number
+
+	column retention_pct
+		dataType: double
+		lineageTag: ab1a21e0-c568-4bce-8c0c-f79967b148cc
+		summarizeBy: none
+		sourceColumn: retention_pct
+
+	partition agg_cohort_retention = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "agg_cohort_retention.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"cohort_month", "month_number", "retention_pct"}),
+				    Typed = Table.TransformColumnTypes(Kept, {{"cohort_month", type text}, {"month_number", Int64.Type}, {"retention_pct", type number}}, "en-US")
+				in
+				    Typed
+

@@ -1,0 +1,30 @@
+# secrets -- NEVER commit
+.env
+env.txt
+.env.txt
+GEMINI_API_KEY*
+.streamlit/secrets.toml
+
+# python
+__pycache__/
+*.pyc
+.venv/
+
+# raw Kaggle data (download it yourself) and local DB
+data/raw/*.csv
+data/*.db
+models/*.joblib
+reports/ai_business_report_*.md
+
+# uploaded datasets (private)
+data/workspaces/
+
+# large generated tables (rebuild with run_pipeline.bat) -- keeps the repo small
+data/processed/fact_*.csv
+data/processed/customer_*.csv
+data/processed/dim_customer.csv
+data/processed/review_sentiment.csv
+
+# Power BI local caches
+**/.pbi/localSettings.json
+**/.pbi/cache.abf

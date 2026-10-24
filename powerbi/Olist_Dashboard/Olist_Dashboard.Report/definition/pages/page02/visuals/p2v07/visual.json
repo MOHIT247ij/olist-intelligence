@@ -1,0 +1,152 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "p2v07",
+  "position": {
+    "x": 805,
+    "y": 222,
+    "z": 1000,
+    "width": 455,
+    "height": 226,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "customer_rfm"
+                    }
+                  },
+                  "Property": "segment"
+                }
+              },
+              "queryRef": "customer_rfm.segment",
+              "nativeQueryRef": "segment"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "customer_rfm"
+                    }
+                  },
+                  "Property": "RFM Customers"
+                }
+              },
+              "queryRef": "customer_rfm.RFM Customers",
+              "nativeQueryRef": "RFM Customers"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "customer_rfm"
+                    }
+                  },
+                  "Property": "RFM Revenue"
+                }
+              },
+              "queryRef": "customer_rfm.RFM Revenue",
+              "nativeQueryRef": "RFM Revenue"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "customer_rfm"
+                    }
+                  },
+                  "Property": "recommended_action"
+                }
+              },
+              "queryRef": "customer_rfm.recommended_action",
+              "nativeQueryRef": "recommended_action"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "customer_rfm"
+                  }
+                },
+                "Property": "RFM Revenue"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

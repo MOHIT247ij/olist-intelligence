@@ -1,0 +1,72 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/1.0.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY24SU10",
+      "reportVersionAtImport": "5.59",
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "Olist_Dark_Theme.json",
+      "reportVersionAtImport": "5.59",
+      "type": "RegisteredResources"
+    }
+  },
+  "layoutOptimization": "None",
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY24SU10",
+          "path": "BaseThemes/CY24SU10.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Olist_Dark_Theme.json",
+          "path": "Olist_Dark_Theme.json",
+          "type": "CustomTheme"
+        },
+        {
+          "name": "bg01.png",
+          "path": "bg01.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg02.png",
+          "path": "bg02.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg03.png",
+          "path": "bg03.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg04.png",
+          "path": "bg04.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg05.png",
+          "path": "bg05.png",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}

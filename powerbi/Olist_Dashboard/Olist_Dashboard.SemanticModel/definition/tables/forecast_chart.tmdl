@@ -1,0 +1,72 @@
+table forecast_chart
+	lineageTag: 0dd01082-b0bd-4241-a0fb-24468b4972c1
+
+	measure 'Actual Revenue' = SUM ( forecast_chart[actual] )
+		formatString: \R$ #,0
+		lineageTag: b9bcdba0-2efd-4e34-b31f-53e55aa3d10f
+
+	measure 'Forecast Revenue' = SUM ( forecast_chart[forecast] )
+		formatString: \R$ #,0
+		lineageTag: 61f3cee3-7c35-4d7b-b92d-187e2c579596
+
+	measure 'Forecast Lower' = SUM ( forecast_chart[lower] )
+		formatString: \R$ #,0
+		lineageTag: 80c24ef2-b100-4ead-b6d6-93de06385d51
+
+	measure 'Forecast Upper' = SUM ( forecast_chart[upper] )
+		formatString: \R$ #,0
+		lineageTag: 6496c4c0-6286-4ed9-8992-7bcc09dce888
+
+	measure 'Avg Weekly Revenue' = AVERAGE ( forecast_chart[actual] )
+		formatString: \R$ #,0,\K
+		lineageTag: a17e8022-fa39-479d-a870-f02a6bc12264
+
+	measure 'Forecast Next 12W' = SUM ( forecast_chart[forecast] )
+		formatString: \R$ #,0.00,,\M
+		lineageTag: 2b4f9036-6918-4e54-8329-4a707c492db2
+
+	column week
+		dataType: dateTime
+		formatString: dd-mmm-yyyy
+		lineageTag: 9683dd2f-d539-437d-bb9d-0cd551d6350b
+		summarizeBy: none
+		sourceColumn: week
+
+	column actual
+		dataType: double
+		lineageTag: 31b61e99-5e7b-420b-82be-2a1f92af79b2
+		summarizeBy: none
+		sourceColumn: actual
+
+	column forecast
+		dataType: double
+		lineageTag: 91e766f0-341b-45b8-b0ed-c848fa2efc67
+		summarizeBy: none
+		sourceColumn: forecast
+
+	column lower
+		dataType: double
+		lineageTag: b82e13b9-0c59-4da3-b1f7-28df977932ee
+		summarizeBy: none
+		sourceColumn: lower
+
+	column upper
+		dataType: double
+		lineageTag: fdc10498-3457-4ca7-ab0e-c4fa9d148965
+		summarizeBy: none
+		sourceColumn: upper
+
+	partition forecast_chart = m
+		mode: import
+		source =
+				let
+				    Hist = Csv.Document(File.Contents(DataFolder & "revenue_weekly.csv"), [Delimiter = ",", Encoding = 65001]),
+				    HistP = Table.PromoteHeaders(Hist, [PromoteAllScalars = true]),
+				    HistR = Table.RenameColumns(HistP, {{"revenue", "actual"}}),
+				    Fc = Csv.Document(File.Contents(DataFolder & "forecast_weekly.csv"), [Delimiter = ",", Encoding = 65001]),
+				    FcP = Table.PromoteHeaders(Fc, [PromoteAllScalars = true]),
+				    Combined = Table.Combine({HistR, FcP}),
+				    Typed = Table.TransformColumnTypes(Combined, {{"week", type date}, {"actual", type number}, {"forecast", type number}, {"lower", type number}, {"upper", type number}}, "en-US")
+				in
+				    Typed
+

@@ -1,0 +1,176 @@
+table fact_orders
+	lineageTag: d82ee7b0-e17d-45cf-a355-062e258f6943
+
+	measure Revenue = CALCULATE ( SUM ( fact_orders[product_revenue] ), NOT fact_orders[order_status] IN {"canceled", "unavailable"} )
+		formatString: \R$ #,0.00,,\M
+		lineageTag: 12e467c1-ad20-428a-9eab-d74036784d79
+
+	measure 'Est Gross Profit' = CALCULATE ( SUM ( fact_orders[est_gross_profit] ), NOT fact_orders[order_status] IN {"canceled", "unavailable"} )
+		formatString: \R$ #,0.00,,\M
+		lineageTag: 8041e92f-08a2-406a-80a7-638bb455302f
+
+	measure Orders = CALCULATE ( DISTINCTCOUNT ( fact_orders[order_id] ), NOT fact_orders[order_status] IN {"canceled", "unavailable"} )
+		formatString: #,0
+		lineageTag: 3803636d-870a-4d82-b8e2-15df1475c3f6
+
+	measure Customers = CALCULATE ( DISTINCTCOUNT ( fact_orders[customer_unique_id] ), NOT fact_orders[order_status] IN {"canceled", "unavailable"} )
+		formatString: #,0
+		lineageTag: 504f954a-8ace-44a8-8aae-9e370461c2e6
+
+	measure AOV = DIVIDE ( [Revenue], [Orders] )
+		formatString: \R$ #,0
+		lineageTag: bd55dcb1-e2a1-415b-8633-9a3bea3a546b
+
+	measure 'Avg Review' = AVERAGE ( fact_orders[review_score] )
+		formatString: 0.00
+		lineageTag: ded5855b-1b8c-4bcf-b28c-ac0acd329cc4
+
+	measure 'Revenue 3M Avg' = DIVIDE ( CALCULATE ( [Revenue], DATESINPERIOD ( dim_date[date], MAX ( dim_date[date] ), -3, MONTH ) ), 3 )
+		formatString: \R$ #,0.00,,\M
+		lineageTag: 5d2e3267-3f09-4ad7-8cc4-053d2f180e01
+
+	measure 'Top10 State Revenue' = IF ( RANKX ( ALL ( fact_orders[customer_state] ), [Revenue],, DESC ) <= 10, [Revenue] )
+		formatString: \R$ #,0.00,,\M
+		lineageTag: 16a7fd27-d9f0-4c53-bb13-18e2bfb5806c
+
+	measure 'Repeat Rate %' = DIVIDE ( COUNTROWS ( FILTER ( VALUES ( fact_orders[customer_unique_id] ), CALCULATE ( DISTINCTCOUNT ( fact_orders[order_id] ) ) > 1 ) ), [Customers] )
+		formatString: 0.0%
+		lineageTag: f7339ab1-c7a2-4c72-931c-d093a7bd78d2
+
+	measure 'Revenue YTD' = TOTALYTD ( [Revenue], dim_date[date] )
+		formatString: \R$ #,0.00,,\M
+		lineageTag: 6e7fbb62-838f-4855-bb22-9b96b14d6933
+
+	measure 'YoY Growth %' = VAR cur = [Revenue YTD] VAR prev = CALCULATE ( [Revenue YTD], SAMEPERIODLASTYEAR ( dim_date[date] ) ) RETURN DIVIDE ( cur - prev, prev )
+		formatString: +0.0%;-0.0%
+		lineageTag: b7c16d5a-6e52-40f0-b2a1-f65a84aa66d5
+
+	measure 'Avg Delivery Days' = AVERAGE ( fact_orders[delivery_days] )
+		formatString: 0.0
+		lineageTag: 6349b665-4d80-40d1-b112-8444b6995279
+
+	measure 'Late Delivery %' = AVERAGE ( fact_orders[is_late] )
+		formatString: 0.0%
+		lineageTag: 267439bf-901a-45b8-a686-3d967a430328
+
+	measure 'Negative Review %' = DIVIDE ( CALCULATE ( COUNTROWS ( fact_orders ), fact_orders[review_score] <= 2 ), CALCULATE ( COUNTROWS ( fact_orders ), NOT ISBLANK ( fact_orders[review_score] ) ) )
+		formatString: 0.0%
+		lineageTag: 9f15ccec-1681-4c3f-a25d-b5a995203a87
+
+	measure 'Forecast MAPE' = 0.149
+		formatString: 0.0%
+		lineageTag: 2e986f4e-7004-4cac-95fd-cf82b6659f47
+
+	column order_id
+		dataType: string
+		lineageTag: 6eb493f8-a0c8-4fe3-916a-439c41609909
+		summarizeBy: none
+		sourceColumn: order_id
+
+	column customer_unique_id
+		dataType: string
+		lineageTag: da5795e2-8ab8-4740-84ac-4ca0848e42c7
+		summarizeBy: none
+		sourceColumn: customer_unique_id
+
+	column order_status
+		dataType: string
+		lineageTag: a3bff0e5-cef7-4831-b071-5046af0077ba
+		summarizeBy: none
+		sourceColumn: order_status
+
+	column purchase_date
+		dataType: dateTime
+		formatString: dd-mmm-yyyy
+		lineageTag: 24aeb339-c378-4e85-a352-f51b09d6789d
+		summarizeBy: none
+		sourceColumn: purchase_date
+
+	column date_key
+		dataType: int64
+		lineageTag: d108d06e-4bd3-4d2f-8d9a-82a5b46f79b4
+		summarizeBy: none
+		sourceColumn: date_key
+
+	column delivery_days
+		dataType: double
+		lineageTag: da5c84fa-2e1b-457a-b4bf-3a1698d565e7
+		summarizeBy: none
+		sourceColumn: delivery_days
+
+	column delay_days
+		dataType: double
+		lineageTag: 6a861502-548c-4690-9adb-0b7ee61641b5
+		summarizeBy: none
+		sourceColumn: delay_days
+
+	column is_late
+		dataType: double
+		lineageTag: 0b13a0e8-1403-4da0-b5ee-a519f6051f92
+		summarizeBy: none
+		sourceColumn: is_late
+
+	column product_revenue
+		dataType: double
+		lineageTag: 19cdb182-5f5a-4755-8a1a-6443c0fe510b
+		summarizeBy: none
+		sourceColumn: product_revenue
+
+	column freight_value
+		dataType: double
+		lineageTag: 078bcaec-8832-4a12-bdf4-90d96d3989df
+		summarizeBy: none
+		sourceColumn: freight_value
+
+	column gmv
+		dataType: double
+		lineageTag: 8707a6fa-ace6-46fb-a563-ded6e5c9c5c9
+		summarizeBy: none
+		sourceColumn: gmv
+
+	column payment_value
+		dataType: double
+		lineageTag: c05d3751-f6f3-4386-adb4-722642d5cf54
+		summarizeBy: none
+		sourceColumn: payment_value
+
+	column payment_type
+		dataType: string
+		lineageTag: 75be97a3-0203-489e-9b2a-e7d391d8c5de
+		summarizeBy: none
+		sourceColumn: payment_type
+
+	column review_score
+		dataType: double
+		lineageTag: 1ac31d63-48b7-46e1-a0ee-e298a1d879b2
+		summarizeBy: none
+		sourceColumn: review_score
+
+	column est_gross_profit
+		dataType: double
+		lineageTag: 2a691aec-647c-4566-942e-f0948fd629f1
+		summarizeBy: none
+		sourceColumn: est_gross_profit
+
+	column customer_state
+		dataType: string
+		lineageTag: d1304575-16f1-428b-a74a-5d59d840cbbd
+		summarizeBy: none
+		sourceColumn: customer_state
+
+	column 'Delivery Bucket' = SWITCH ( TRUE (), ISBLANK ( fact_orders[delay_days] ), BLANK (), fact_orders[delay_days] <= -10, "1. 10+ days early", fact_orders[delay_days] <= 0, "2. On time", fact_orders[delay_days] <= 7, "3. 1-7 days late", "4. 7+ days late" )
+		dataType: string
+		lineageTag: fb31145d-25fa-48cf-a874-de276b42b7a5
+		summarizeBy: none
+
+	partition fact_orders = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "fact_orders.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"order_id", "customer_unique_id", "order_status", "purchase_date", "date_key", "delivery_days", "delay_days", "is_late", "product_revenue", "freight_value", "gmv", "payment_value", "payment_type", "review_score", "est_gross_profit", "customer_state"}),
+				    Typed = Table.TransformColumnTypes(Kept, {{"order_id", type text}, {"customer_unique_id", type text}, {"order_status", type text}, {"purchase_date", type date}, {"date_key", Int64.Type}, {"delivery_days", type number}, {"delay_days", type number}, {"is_late", type number}, {"product_revenue", type number}, {"freight_value", type number}, {"gmv", type number}, {"payment_value", type number}, {"payment_type", type text}, {"review_score", type number}, {"est_gross_profit", type number}, {"customer_state", type text}}, "en-US")
+				in
+				    Typed
+

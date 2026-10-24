@@ -1,0 +1,74 @@
+table agg_seller_scorecard
+	lineageTag: 11e3674d-797f-49cf-92f6-8d38610ae172
+
+	measure 'Seller Count' = COUNTROWS ( agg_seller_scorecard )
+		formatString: #,0
+		lineageTag: e570a167-14b8-4bb5-8a54-b7b729298825
+
+	measure 'Top Sellers' = CALCULATE ( COUNTROWS ( agg_seller_scorecard ), agg_seller_scorecard[tier] = "Top Seller" )
+		formatString: #,0
+		lineageTag: 74dc36b2-ebc7-4591-a13d-21f0c5dbf5b2
+
+	measure 'Avg Seller Score' = AVERAGE ( agg_seller_scorecard[score] )
+		formatString: 0.0
+		lineageTag: fc4a97a7-320e-4841-a700-7133f2e185b9
+
+	column seller_id
+		dataType: string
+		lineageTag: d8404d3a-c3d9-4900-ad92-5b502edbf0bf
+		summarizeBy: none
+		sourceColumn: seller_id
+
+	column state
+		dataType: string
+		lineageTag: 9c895111-46b3-4dc2-82e1-7b6ba97ebafa
+		summarizeBy: none
+		sourceColumn: state
+
+	column revenue
+		dataType: double
+		lineageTag: fe946507-b99e-4af7-96d8-6e3590810a5e
+		summarizeBy: none
+		sourceColumn: revenue
+
+	column orders
+		dataType: int64
+		lineageTag: 558b2ba9-5457-4b4c-934c-d5efc705ac15
+		summarizeBy: none
+		sourceColumn: orders
+
+	column avg_review
+		dataType: double
+		lineageTag: abd6d25a-12f3-491e-98af-386c05cdefd2
+		summarizeBy: none
+		sourceColumn: avg_review
+
+	column late_pct
+		dataType: double
+		lineageTag: 3df6d2c1-d5fc-4f0c-8917-0034d915e728
+		summarizeBy: none
+		sourceColumn: late_pct
+
+	column score
+		dataType: double
+		lineageTag: 28c8ff6b-3ade-4b2e-a33c-bd67ef7bc445
+		summarizeBy: none
+		sourceColumn: score
+
+	column tier
+		dataType: string
+		lineageTag: c5f3ead9-2d1d-48c8-8500-4b0e3c31db68
+		summarizeBy: none
+		sourceColumn: tier
+
+	partition agg_seller_scorecard = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "agg_seller_scorecard.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"seller_id", "state", "revenue", "orders", "avg_review", "late_pct", "score", "tier"}),
+				    Typed = Table.TransformColumnTypes(Kept, {{"seller_id", type text}, {"state", type text}, {"revenue", type number}, {"orders", Int64.Type}, {"avg_review", type number}, {"late_pct", type number}, {"score", type number}, {"tier", type text}}, "en-US")
+				in
+				    Typed
+

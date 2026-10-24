@@ -1,0 +1,30 @@
+table agg_complaint_themes
+	lineageTag: 291c56d8-70ce-452a-90dc-c49940915ca0
+
+	measure 'Total Complaints' = SUM ( agg_complaint_themes[complaints] )
+		formatString: #,0
+		lineageTag: eaace7ad-f2cf-4409-b619-534fe5ad795f
+
+	column theme
+		dataType: string
+		lineageTag: 6f653220-937c-46bb-871d-b748a631517c
+		summarizeBy: none
+		sourceColumn: theme
+
+	column complaints
+		dataType: int64
+		lineageTag: ec85ce7e-2a60-4a4f-b0af-322ae1a8c293
+		summarizeBy: none
+		sourceColumn: complaints
+
+	partition agg_complaint_themes = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "agg_complaint_themes.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"theme", "complaints"}),
+				    Typed = Table.TransformColumnTypes(Kept, {{"theme", type text}, {"complaints", Int64.Type}}, "en-US")
+				in
+				    Typed
+
